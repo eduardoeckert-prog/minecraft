@@ -54,3 +54,8 @@ function loadWorld() {
     console.log("Mundo carregado:", world);
   }
 }
+
+window.login = login;
+window.loadWorld = loadWorld;
+window.saveWorld = saveWorld;
+window.openMinecraft = openMinecraft;
