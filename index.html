@@ -2,12 +2,12 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Turma Minecraft</title>
+  <title>Jogo da Turma</title>
 </head>
 
 <body>
 
-<h1>Turma Minecraft</h1>
+<h1>Jogo da Turma</h1>
 
 <div id="loginBox">
   <input id="email" placeholder="email">
@@ -17,20 +17,17 @@
 
 <div id="panel" style="display:none;">
 
-  <h3>Bem-vindo!</h3>
+  <h3>Logado ✔</h3>
 
-  <button onclick="openGame()">Abrir Minecraft</button>
-  <button onclick="saveSession()">Salvar sessão</button>
-  <button onclick="loadSession()">Carregar sessão</button>
+  <button onclick="openMinecraft()">Abrir Minecraft</button>
+  <button onclick="saveWorld()">Salvar mundo</button>
+  <button onclick="loadWorld()">Carregar mundo</button>
 
   <p id="status"></p>
 
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
+<script src="login.js"></script>
 <script src="app.js"></script>
 
 </body>
