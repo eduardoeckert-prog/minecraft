@@ -28,3 +28,48 @@ function login() {
 
   loadWorld();
 }
+
+function openMinecraft() {
+  document.getElementById("panel").innerHTML = `
+    <button onclick="closeMinecraft()">⬅ Voltar</button>
+
+    <iframe 
+      src="https://classic.minecraft.net/" 
+      width="100%" 
+      height="600px"
+      style="border:none;">
+    </iframe>
+  `;
+}
+
+function closeMinecraft() {
+  location.reload();
+}
+
+function saveWorld() {
+  if (!currentUser) return;
+
+  localStorage.setItem(
+    currentUser.email + "_world",
+    JSON.stringify(world)
+  );
+
+  alert("Mundo salvo!");
+}
+
+function loadWorld() {
+  if (!currentUser) return;
+
+  const data = localStorage.getItem(currentUser.email + "_world");
+
+  if (data) {
+    world = JSON.parse(data);
+    console.log("Mundo carregado:", world);
+  }
+}
+
+window.login = login;
+window.loadWorld = loadWorld;
+window.saveWorld = saveWorld;
+window.openMinecraft = openMinecraft;
+window.closeMinecraft = closeMinecraft;
