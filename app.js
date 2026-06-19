@@ -1,77 +1,70 @@
-let currentUser = null;
-
 let world = {
   blocks: []
 };
 
-// 🔐 LOGIN
-function login() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  const user = users.find(u =>
-    u.email === email && u.password === password
-  );
-
-  if (!user) {
-    alert("Acesso negado!");
-    return;
-  }
-
-  currentUser = user;
-
-  document.getElementById("loginBox").style.display = "none";
-  document.getElementById("panel").style.display = "block";
-
-  document.getElementById("status").innerText =
-    "Logado como: " + currentUser.email;
-
-  loadWorld();
-}
-
-function openMinecraft() {
-  document.getElementById("menu").style.display = "none";
-
-  document.getElementById("gameArea").innerHTML = `
-    <button onclick="closeMinecraft()">⬅ Voltar</button>
-    <iframe 
-      src="https://classic.minecraft.net/" 
-      width="100%" 
-      height="600px"
-      style="border:none;">
-    </iframe>
-  `;
-}
-
-function closeMinecraft() {
-  document.getElementById("menu").style.display = "block";
-  document.getElementById("gameArea").innerHTML = "";
-}
-
+// ===== SALVAR MUNDO =====
 function saveWorld() {
   if (!currentUser) return;
 
+  const key = btoa(currentUser.email); // evita chave óbvia
+
   localStorage.setItem(
-    currentUser.email + "_world",
+    key + "_world",
     JSON.stringify(world)
   );
 
   alert("Mundo salvo!");
 }
 
+// ===== CARREGAR MUNDO =====
 function loadWorld() {
   if (!currentUser) return;
 
-  const data = localStorage.getItem(currentUser.email + "_world");
+  const key = btoa(currentUser.email);
+  const data = localStorage.getItem(key + "_world");
 
   if (data) {
     world = JSON.parse(data);
     console.log("Mundo carregado:", world);
+  } else {
+    console.log("Nenhum mundo salvo.");
   }
 }
 
-window.login = login;
-window.loadWorld = loadWorld;
+// ===== ABRIR MINECRAFT =====
+function openMinecraft() {
+  document.getElementById("menu").style.display = "none";
+
+  const url = "https://classic.minecraft.net/";
+
+  document.getElementById("gameArea").innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      
+      <button onclick="closeMinecraft()">⬅ Voltar</button>
+
+      <iframe 
+        src="${url}" 
+        width="100%" 
+        height="600px"
+        style="border:none;">
+      </iframe>
+
+      <button onclick="window.open('${url}', '_blank')">
+        Abrir em nova aba (se não carregar)
+      </button>
+
+    </div>
+  `;
+}
+
+// ===== FECHAR MINECRAFT =====
+function closeMinecraft() {
+  document.getElementById("menu").style.display = "block";
+  document.getElementById("gameArea").innerHTML = "";
+}
+
+// export global
 window.saveWorld = saveWorld;
+window.loadWorld = loadWorld;
 window.openMinecraft = openMinecraft;
 window.closeMinecraft = closeMinecraft;
