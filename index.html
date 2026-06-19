@@ -9,21 +9,29 @@
 
 <h1>Jogo da Turma</h1>
 
+<!-- LOGIN -->
 <div id="loginBox">
   <input id="email" placeholder="email">
   <input id="password" type="password" placeholder="senha">
   <button onclick="login()">Entrar</button>
 </div>
 
+<!-- PAINEL DO JOGO -->
 <div id="panel" style="display:none;">
 
-  <h3>Logado ✔</h3>
+  <h3 id="status">Logado ✔</h3>
 
-  <button onclick="openMinecraft()">Abrir Minecraft</button>
-  <button onclick="saveWorld()">Salvar mundo</button>
-  <button onclick="loadWorld()">Carregar mundo</button>
+  <!-- MENU -->
+  <div id="menu">
 
-  <p id="status"></p>
+    <button onclick="openMinecraft()">Abrir Minecraft</button>
+    <button onclick="saveWorld()">Salvar mundo</button>
+    <button onclick="loadWorld()">Carregar mundo</button>
+
+  </div>
+
+  <!-- AQUI VAI O MINECRAFT -->
+  <div id="gameArea"></div>
 
 </div>
 
