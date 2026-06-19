@@ -28,34 +28,3 @@ function login() {
 
   loadWorld();
 }
-
-function openMinecraft() {
-  window.open("https://classic.minecraft.net/", "_blank");
-}
-
-function saveWorld() {
-  if (!currentUser) return;
-
-  localStorage.setItem(
-    currentUser.email + "_world",
-    JSON.stringify(world)
-  );
-
-  alert("Mundo salvo!");
-}
-
-function loadWorld() {
-  if (!currentUser) return;
-
-  const data = localStorage.getItem(currentUser.email + "_world");
-
-  if (data) {
-    world = JSON.parse(data);
-    console.log("Mundo carregado:", world);
-  }
-}
-
-window.login = login;
-window.loadWorld = loadWorld;
-window.saveWorld = saveWorld;
-window.openMinecraft = openMinecraft;
