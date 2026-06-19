@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 
 <head>
@@ -13,12 +14,14 @@
       padding: 20px;
     }
 
-    #loginBox, #panel {
+    #loginBox,
+    #panel {
       background: white;
       padding: 20px;
       border-radius: 10px;
       max-width: 500px;
       margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     input {
@@ -26,16 +29,22 @@
       margin: 10px 0;
       padding: 10px;
       width: 100%;
+      box-sizing: border-box;
     }
 
     button {
       padding: 10px;
       margin: 5px 0;
       cursor: pointer;
+      width: 100%;
     }
 
-    #gameArea iframe {
-      border-radius: 8px;
+    hr {
+      margin: 20px 0;
+    }
+
+    #status {
+      color: green;
     }
   </style>
 
@@ -46,38 +55,71 @@
   <h1 style="text-align:center;">Jogo da Turma</h1>
 
   <!-- LOGIN -->
+
   <div id="loginBox">
-    <h3>Login</h3>
 
-    <input id="email" placeholder="email">
-    <input id="password" type="password" placeholder="senha">
+```
+<h3>Login</h3>
 
-    <button onclick="login()">Entrar</button>
+<input
+  id="email"
+  type="email"
+  placeholder="email">
+
+<input
+  id="password"
+  type="password"
+  placeholder="senha">
+
+<button onclick="login()">
+  Entrar
+</button>
+```
+
   </div>
 
   <!-- PAINEL -->
+
   <div id="panel" style="display:none;">
 
-    <h3 id="status">Logado ✔</h3>
+```
+<h3 id="status">
+  Logado ✔
+</h3>
 
-    <button onclick="logout()">Sair</button>
+<button onclick="logout()">
+  Sair
+</button>
 
-    <hr>
+<hr>
 
-    <!-- MENU -->
-    <div id="menu">
-      <button onclick="openMinecraft()">Abrir Minecraft</button>
-      <button onclick="saveWorld()">Salvar mundo</button>
-      <button onclick="loadWorld()">Carregar mundo</button>
-    </div>
+<!-- MENU -->
+<div id="menu">
 
-    <!-- JOGO -->
-    <div id="gameArea"></div>
+  <button onclick="openMinecraft()">
+    Abrir Minecraft 1.8.8
+  </button>
+
+  <button onclick="saveWorld()">
+    Salvar Mundo
+  </button>
+
+  <button onclick="loadWorld()">
+    Carregar Mundo
+  </button>
+
+</div>
+
+<!-- ÁREA DO JOGO -->
+<div id="gameArea"></div>
+```
 
   </div>
 
   <!-- SCRIPTS -->
+
   <script src="login.js"></script>
+
   <script src="app.js"></script>
 
 </body>
