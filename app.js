@@ -33,28 +33,66 @@ function loadWorld() {
 
 // ===== ABRIR MINECRAFT =====
 function openMinecraft() {
-  document.getElementById("menu").style.display = "none";
+  const url = "about:blank";
 
-  const url = "https://classic.minecraft.net/";
+  // abre nova aba vazia (estilo unblocked games)
+  const win = window.open("about:blank", "_blank");
 
-  document.getElementById("gameArea").innerHTML = `
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      
-      <button onclick="closeMinecraft()">⬅ Voltar</button>
+  // se o navegador bloquear popup
+  if (!win) {
+    alert("Seu navegador bloqueou a abertura da aba.");
+    return;
+  }
 
-      <iframe 
-        src="${url}" 
-        width="100%" 
-        height="600px"
-        style="border:none;">
-      </iframe>
+  try {
+    win.document.write(`
+      <html>
+        <head>
+          <title>Minecraft 1.8.8</title>
+          <style>
+            body {
+              margin: 0;
+              overflow: hidden;
+              background: black;
+            }
 
-      <button onclick="window.open('${url}', '_blank')">
-        Abrir em nova aba (se não carregar)
-      </button>
+            iframe {
+              width: 100vw;
+              height: 100vh;
+              border: none;
+            }
 
-    </div>
-  `;
+            #loading {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              color: white;
+              font-family: Arial;
+              font-size: 18px;
+            }
+          </style>
+        </head>
+
+        <body>
+
+          <div id="loading">Carregando Minecraft 1.8.8...</div>
+
+          <iframe 
+            src="${url}"
+            onload="document.getElementById('loading').style.display='none'"
+          ></iframe>
+
+        </body>
+      </html>
+    `);
+
+    win.document.close();
+
+  } catch (e) {
+    // fallback se document.write for bloqueado
+    win.location.href = url;
+  }
 }
 
 // ===== FECHAR MINECRAFT =====
