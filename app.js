@@ -30,9 +30,10 @@ function login() {
 }
 
 function openMinecraft() {
-  document.getElementById("panel").innerHTML = `
-    <button onclick="closeMinecraft()">⬅ Voltar</button>
+  document.getElementById("menu").style.display = "none";
 
+  document.getElementById("gameArea").innerHTML = `
+    <button onclick="closeMinecraft()">⬅ Voltar</button>
     <iframe 
       src="https://classic.minecraft.net/" 
       width="100%" 
@@ -43,7 +44,8 @@ function openMinecraft() {
 }
 
 function closeMinecraft() {
-  location.reload();
+  document.getElementById("menu").style.display = "block";
+  document.getElementById("gameArea").innerHTML = "";
 }
 
 function saveWorld() {
