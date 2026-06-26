@@ -1,6 +1,6 @@
 let world = {
 blocks: []
-};
+}; 
 
 // ===== SALVAR MUNDO =====
 function saveWorld() {
