@@ -1,15 +1,20 @@
 let world = {
 blocks: []
-}; 
+};
 
 // ===== SALVAR MUNDO =====
-function saveWorld() {
-if (!currentUser) return;
 
-const key = btoa(currentUser.email);
+function saveWorld() {
+if (!window.currentUser) {
+alert("Faça login primeiro.");
+return;
+}
+
+const key =
+btoa(window.currentUser.nickname) + "_world";
 
 localStorage.setItem(
-key + "_world",
+key,
 JSON.stringify(world)
 );
 
@@ -17,32 +22,49 @@ alert("Mundo salvo!");
 }
 
 // ===== CARREGAR MUNDO =====
-function loadWorld() {
-if (!currentUser) return;
 
-const key = btoa(currentUser.email);
-const data = localStorage.getItem(key + "_world");
+function loadWorld() {
+if (!window.currentUser) return;
+
+const key =
+btoa(window.currentUser.nickname) + "_world";
+
+const data = localStorage.getItem(key);
 
 if (data) {
 world = JSON.parse(data);
-console.log("Mundo carregado:", world);
+
+```
+console.log(
+  "Mundo carregado:",
+  world
+);
+```
+
 } else {
-console.log("Nenhum mundo salvo.");
+console.log(
+"Nenhum mundo salvo."
+);
 }
 }
 
 // ===== ABRIR MINECRAFT =====
+
 function openMinecraft() {
-window.open("./mc/", "_blank");
+window.open(
+"./Eaglercraft.html",
+"_blank"
+);
 }
 
 // ===== FECHAR MINECRAFT =====
+
 function closeMinecraft() {
-document.getElementById("menu").style.display = "block";
 document.getElementById("gameArea").innerHTML = "";
 }
 
-// export global
+// ===== EXPORTAR =====
+
 window.saveWorld = saveWorld;
 window.loadWorld = loadWorld;
 window.openMinecraft = openMinecraft;
