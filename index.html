@@ -62,14 +62,16 @@
 <h3>Login</h3>
 
 <input
-  id="email"
-  type="email"
-  placeholder="email">
+  id="nickname"
+  type="text"
+  placeholder="Nickname"
+  autocomplete="off">
 
 <input
   id="password"
   type="password"
-  placeholder="senha">
+  placeholder="Senha"
+  autocomplete="off">
 
 <button onclick="login()">
   Entrar
@@ -93,7 +95,6 @@
 
 <hr>
 
-<!-- MENU -->
 <div id="menu">
 
   <button onclick="openMinecraft()">
@@ -110,18 +111,14 @@
 
 </div>
 
-<!-- ÁREA DO JOGO -->
 <div id="gameArea"></div>
 ```
 
   </div>
-
-  <!-- SCRIPTS -->
 
   <script src="login.js"></script>
 
   <script src="app.js"></script>
 
 </body>
-
 </html>
